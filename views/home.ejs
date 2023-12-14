@@ -2,12 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="styles.css">
+    <title>magasin de tele</title>
 </head>
 <body>
+    <h1>liste de Tv</h1>
 
-    <script src="home.js"></script>
+    <form class="formadd" action="/add" method="POST">
+        <input name="Marque" placeholder="Brand"/>
+        <input name="Prix" placeholder="Price"/>
+        <input name="Taille" placeholder="Height"/>
+        <input type="submit" value="Ajouter une télévision"/>
+    </form>
+    <h2>télévisions désirées</h2>
+    <table>
+        <tr>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Height</th>
+            <th>Bought</th>
+            <th>Broke</th>
+            <th>Cause</th>
+        </tr>
+        <% for(televisions of televisions_liste) { %>
+        <tr>    
+            <td><%= televisions.marque %></td>
+            <td><%= televisions.prix %></td>
+            <td><%= televisions.taille %></td>
+            <td><%= televisions.pascasse %></td>
+            <td><%= televisions.casse %></td>
+            <td><%= televisions.raisoncasse %></td>
+            <td><form action="/buy" method="post">
+                <input type="hidden" name="id_tele" value="<%= televisions.id_tele %>">
+                <input type="submit" value="Achat"/>
+            </form></td>
+        </tr>
+        <% } %>
+    </table>
+
+
+    <h2>Possession</h2>
+    <table>
+        <tr>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Height</th>
+            <th>Bought</th>
+            <th>Broke</th>
+            <th>Cause</th>
+        </tr>
+        <% for(televisions of possedé) { %>
+        <tr>    
+          <td><%= televisions.marque %></td>
+          <td><%= televisions.prix %></td>
+          <td><%= televisions.taille %></td>
+          <td><%= televisions.pascasse %></td>
+          <td><%= televisions.casse %></td>
+          <td><%= televisions.raisoncasse %></td>
+            <td><form action="/broke" method="post">
+                <input name="raisoncasse" placeholder="Expliquer la casse"/>
+                <input type="hidden" name="id_tele" value="<%= televisions.id_tele %>">
+                <input type="submit" value="Cassée"/>
+            </form></td>
+        </tr>
+        <% } %>
+    </table>
+
 </body>
 </html>
